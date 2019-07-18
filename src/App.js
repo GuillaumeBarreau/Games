@@ -1,26 +1,90 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components'
 
-function App() {
+import useFormBoard from './component/FormBoard/useFormBoard'
+import FormBoard from './component/FormBoard/FormBoard'
+import Board from './component/Board/Board'
+
+const App = () => {
+
+  const [valueUpdateStatus, setValueUpdateStatus] = useState(false);
+  
+  const [valueRow, setValueRow] = useState(0);
+  const [valueCol, setValueCol] = useState(0);
+
+  const { isShowing, toggle } = useFormBoard();
+
+  const updateValueRow = ( newValue ) => {
+    setValueRow(newValue);
+  };
+  
+  const updateValueCol = ( newValue ) => {
+    setValueCol(newValue);
+  };
+
+  const changeValuesUpdate = () => {
+    setValueUpdateStatus(true);
+  };
+
+  /////////////////////////////////
+  ////////STYLED COMPONENTS////////
+  /////////////////////////////////
+
+  const Wrapper = styled.section `
+    background: papayawhip;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+  `;
+
+  const App = styled.div `
+    text-align: center;
+  `;
+
+  /////////////////////////////////
+  ////////RETURN COMPONENT/////////
+  /////////////////////////////////
+
+  let contentHtml;
+  if (!valueUpdateStatus) {
+    contentHtml = 
+      <Wrapper>
+        {
+          !isShowing
+          ?
+            <button
+              className = "button-default"
+              onClick = { toggle }
+            >
+              Show Dashboard
+            </button>
+          :
+            <FormBoard
+              valuesUpdateStatus = { changeValuesUpdate }
+              getValueRow = { updateValueRow }
+              getValueCol = { updateValueCol }
+              isShowing = { isShowing }
+            />
+        }
+      </Wrapper>;
+  } else {
+    contentHtml = 
+      <Board 
+        valueRow = { valueRow }
+        valueCol = { valueCol }
+      /> ;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <App>
+      { contentHtml }
+    </App>
   );
-}
+
+};
 
 export default App;

@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import Cell from '../../Board/Cell/Cell';
 import AlertWinner from '../../Board/Alert/Winner';
 import { checkIfThereAWinner } from '../../../scripts/ticTacToe/validation';
+import Btn from '../../Button/Button'
 import { generateBoard } from '../../../scripts/generateBoard';
 import { gamesConfig } from '../../../scripts/gamesConfig';
 import styled from 'styled-components';
+import { style_playerOne, style_playerTwo } from '../../../configStyledComponent/variable';
 
 const TicTacToe = () => {
 
@@ -24,12 +26,17 @@ const TicTacToe = () => {
 
     }
 
+    const retryGame = () => {
+        initGame(gamesConfig.TicTacToe.rows, gamesConfig.TicTacToe.cols);
+    };
+
     const initGame = (row, col) => {
 
         setCountMoves(0);
         setBoard(generateBoard(row, col));
         setCurrentPlayer("playerOne");
         setLaunchGame(true);
+        setPlayerWin("");
 
     }
 
@@ -72,39 +79,48 @@ const TicTacToe = () => {
     /////////////////////////////////
 
     const InitGame = styled.button`
-    background: grey;
-    color: white;
-  `;
+        background: grey;
+        color: white;
+    `;
 
     const Wrapper = styled.section`
-    background-image: linear-gradient(to right bottom, #1d1c1c, #241e21, #282129, #262632, #1e2c3b);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  `;
+        background-image: linear-gradient(to right bottom, #1d1c1c, #241e21, #282129, #262632, #1e2c3b);
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+    `;
 
     const Grid = styled.div`
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-columns: repeat(${gamesConfig.TicTacToe.cols}, 1fr);
-    grid-template-rows: auto; 
-    grid-column-gap: 8px;
-    grid-row-gap: 8px;
-  `;
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(${gamesConfig.TicTacToe.cols}, 1fr);
+        grid-template-rows: auto; 
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        ${ playerWin ? 'opacity: .4;' : null }
+    `;
 
     const Strong = styled.strong`
-    color: ${
-        props => (props.player === "playerTwo")
-            ? "#d915eb"
-            : (props.player === "playerOne")
-                ? "#5ca9ff"
-                : "white"
-        };
-  `;
+        color: ${
+            props => (props.player === "playerTwo")
+                ? style_playerTwo.color
+                : (props.player === "playerOne")
+                    ? style_playerOne.color
+                    : "white"
+            };
+    `;
+
+    const ContentAlertWinner = styled.div`
+        position: absolute;
+        padding-bottom: 2rem;
+        bottom: 0;
+        left: calc(50% - 57px);
+    `;
 
     /////////////////////////////////
     ////////RETURN COMPONENT/////////
@@ -113,9 +129,12 @@ const TicTacToe = () => {
     return (
         <Wrapper>
             {
-                launchGame
+                launchGame && !playerWin
                     ? <p><Strong player={currentPlayer} >{currentPlayer}</Strong> turn is now !</p>
-                    : null
+                    : playerWin
+                        ? <AlertWinner playerWin={playerWin} />
+                        : null
+
             }
             {
                 !launchGame
@@ -146,8 +165,20 @@ const TicTacToe = () => {
                         }
                     </Grid>
             }
-            <AlertWinner playerWin={playerWin} />
+            {
+                playerWin
+                    ?
+                    <ContentAlertWinner>
+                        <Btn
+                            eventClick={retryGame}
+                            texte="Try Again"
+                            playerWin={playerWin}
+                        />
+                    </ContentAlertWinner>
+                    : null
+            }
         </Wrapper>
+        
     );
 }
 

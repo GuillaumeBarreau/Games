@@ -1,9 +1,24 @@
 {
-    "plugins": [
-        "react-hooks"
-    ],
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "es6": true,
+        "browser": true
+    },
     "rules": {
-        "react-hooks/rules-of-hooks": "error", 
-        "react-hooks/exhaustive-deps": "warn" 
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "implicit-arrow-linebreak": "off",
+        "comma-dangle": "off",
+        "indent": "off",
+        "no-trailing-spaces": "off"
     }
 }

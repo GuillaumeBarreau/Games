@@ -8,7 +8,7 @@ export const checkIfThereAWinner = ( board ) => {
     return result;
 
 }
-
+// consecutive++;
 export const checkVerticalWin = ( board ) => {
     
     return false;

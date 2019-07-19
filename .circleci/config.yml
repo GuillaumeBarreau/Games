@@ -1,0 +1,61 @@
+version:                2.2
+jobs:
+  build:
+    docker:
+      - image:          circleci/node:10
+    working_directory:  /tmp/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key:          npm-cache-{{ checksum "package.json" }}
+      - run:            npm ci
+      - save_cache:
+          key:          npm-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name:    Generate project
+          command: npm run build
+      - persist_to_workspace:
+          root:         /tmp
+          paths:
+            - ./*
+  jest:
+    docker:
+      - image:          circleci/node:10
+    working_directory:  /tmp/repo
+    steps:
+      - attach_workspace:
+          at:           /tmp
+      - run:
+          name:    Running tests
+          command: npm run test
+  deploy:
+    docker:
+      - image:          circleci/node:10
+    working_directory:  /tmp/repo
+    steps:
+      - run: curl -X POST -d {} https://api.netlify.com/build_hooks/5d324c0c2dc3213a635a87c2
+workflows:
+  version:              2
+  build_workflows:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only:     /.*/
+      - jest:
+          requires:
+            - build
+          filters:
+            tags:
+              only:     /.*/
+      - deploy:
+          requires:
+            - build
+            - jest
+          filters:
+            tags:
+              only:     /.*/
+            branches:
+              only:     master

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import useFormBoard from './component/Board/FormBoard/useFormBoard';
 import FormBoard from './component/Board/FormBoard/FormBoard';
-import GameConnect4 from './component/Game/Connect4/Connect4';
+import GameConnect4 from './component/Game/Connect4/index.js';
 import GameTicTactoe from './component/Game/TicTacToe/TicTacToe';
 import Btn from './component/Button/Button';
 

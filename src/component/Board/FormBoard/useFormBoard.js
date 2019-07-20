@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const useFormBoard = () => {
-    
     const [isShowing, setIsShowing] = useState(false);
 
     function toggle() {
@@ -11,9 +10,7 @@ const useFormBoard = () => {
     return {
         isShowing,
         toggle,
-    }
-    
+    };
 };
 
 export default useFormBoard;
-

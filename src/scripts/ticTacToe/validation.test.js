@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { checkHorizontalWin, checkDiagonalRightWin, checkDiagonalLeftWin, checkVerticalWin, checkIfThereAWinner } from './validation';
+import {
+ checkHorizontalWin, checkDiagonalRightWin, checkDiagonalLeftWin, checkVerticalWin, checkIfThereAWinner 
+} from './validation';
 
 describe('Validation test for TictacToe Game', () => {
     let initBoard;
@@ -15,24 +17,24 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return true for checkHorizontalWin function', () => {
-            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkDiagonalRightWin function', () => {
-            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkDiagonalLeftWin function', () => {
-            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkVerticalWin function', () => {
-            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false)
-        })
-    })
+            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false);
+        });
+    });
 
     describe('Should return a true value only for the validate function checkDiagonalLeftWin', () => {
         beforeEach(() => {
@@ -43,24 +45,24 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return false for checkHorizontalWin function', () => {
-            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkDiagonalRightWin function', () => {
-            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return true for checkDiagonalLeftWin function', () => {
-            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkVerticalWin function', () => {
-            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false)
-        })
-    })
+            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false);
+        });
+    });
 
     describe('Should return a true value only for the validate function checkDiagonalRightWin', () => {
         beforeEach(() => {
@@ -71,24 +73,24 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return false for checkHorizontalWin function', () => {
-            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return true for checkDiagonalRightWin function', () => {
-            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkDiagonalLeftWin function', () => {
-            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkVerticalWin function', () => {
-            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false)
-        })
-    })
+            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(false);
+        });
+    });
 
     describe('Should return a true value only for the validate function checkVerticalWin', () => {
         beforeEach(() => {
@@ -99,24 +101,24 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return false for checkHorizontalWin function', () => {
-            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkDiagonalRightWin function', () => {
-            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return false for checkDiagonalLeftWin function', () => {
-            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false)
-        })
+            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(false);
+        });
 
         it('Should return true for checkVerticalWin function', () => {
-            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(true)
-        })
-    })
+            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(true);
+        });
+    });
 
     describe('Should return a true value for all functions ', () => {
         beforeEach(() => {
@@ -127,24 +129,24 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return true for checkHorizontalWin function', () => {
-            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkHorizontalWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkDiagonalRightWin function', () => {
-            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkDiagonalRightWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkDiagonalLeftWin function', () => {
-            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(true)
-        })
+            expect(checkDiagonalLeftWin(initBoard, currentPlayer)).toBe(true);
+        });
 
         it('Should return false for checkVerticalWin function', () => {
-            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(true)
-        })
-    })
+            expect(checkVerticalWin(initBoard, currentPlayer)).toBe(true);
+        });
+    });
 
     describe('Should return a true value if there a winner', () => {
         beforeEach(() => {
@@ -155,13 +157,12 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return a true value for checkIfThereAWinner function', () => {
-            expect(checkIfThereAWinner(initBoard, currentPlayer)).toBe(true)
-        })
-
-    })
+            expect(checkIfThereAWinner(initBoard, currentPlayer)).toBe(true);
+        });
+    });
 
     describe('Should return a false value if thre a not winnner', () => {
         beforeEach(() => {
@@ -172,13 +173,10 @@ describe('Validation test for TictacToe Game', () => {
             ];
 
             currentPlayer = 'X';
-        })
+        });
 
         it('Should return a false value for checkIfThereAWinner function', () => {
-            expect(checkIfThereAWinner(initBoard, currentPlayer)).toBe(false)
-        })
-
-    })
-
-
-})
+            expect(checkIfThereAWinner(initBoard, currentPlayer)).toBe(false);
+        });
+    });
+});

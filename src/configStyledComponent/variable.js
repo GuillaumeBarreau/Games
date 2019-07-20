@@ -1,18 +1,18 @@
-export const style_default = {
+export const styleDefault = {
     color: '#ed6e2c',
     hover: '#F8A276',
     active: '#BD4C12',
     linear: 'linear-gradient(to right, #5ca9ff, #6498ff, #8581ff, #af5fff, #d915eb)',
 };
 
-export const style_playerOne = {
+export const stylePlayerOne = {
     color: '#5ca9ff',
     hover: '#92C4FF',
     active: '#365982',
     linear: 'linear-gradient(to right bottom, #5ca9ff, #5294de, #4880bf, #3f6ca0, #365982)',
 };
 
-export const style_playerTwo = {
+export const stylePlayerTwo = {
     color: '#d915eb',
     hover: '#F479FF',
     active: '#97429E',

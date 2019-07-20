@@ -1,47 +1,42 @@
 import React from 'react';
+import styled from 'styled-components';
 import GameContainer from '../../GameContainer/GameContainer';
-import styled from 'styled-components'
 
 const FormBoard = ({ isShowing, launchGameState, selectedGame }) => {
-
     const playGame = (gameName) => {
-
         launchGameState();
         selectedGame(gameName);
+    };
 
-    }
-
-    /////////////////////////////////
-    ////////STYLED COMPONENTS////////
-    /////////////////////////////////
+    // ///////////////////////////////
+    // //////STYLED COMPONENTS////////
+    // ///////////////////////////////
 
     const GamesContainer = styled.div`
         display: flex;
     `;
 
-    /////////////////////////////////
-    ////////RETURN COMPONENT/////////
-    /////////////////////////////////
+    // ///////////////////////////////
+    // //////RETURN COMPONENT/////////
+    // ///////////////////////////////
 
     return isShowing
-        ?
-        (
-            <GamesContainer>
+        ? (
+          <GamesContainer>
 
-                <GameContainer
-                    eventClick={playGame}
-                    gameName="Connect4"
-                />
+            <GameContainer
+              eventClick={playGame}
+              gameName="Connect4"
+            />
 
-                <GameContainer
-                    eventClick={playGame}
-                    gameName="TicTacToe"
-                />
+            <GameContainer
+              eventClick={playGame}
+              gameName="TicTacToe"
+            />
 
-            </GamesContainer>
+          </GamesContainer>
         )
-        :
-        null
-}
+        : null;
+};
 
-export default FormBoard
+export default FormBoard;

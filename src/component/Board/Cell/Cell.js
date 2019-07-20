@@ -1,14 +1,15 @@
 import React from 'react';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-const Cell = ({ indexRow, indexCol, playAction, valuePlayer }) => {
+const Cell = ({
+ indexRow, indexCol, playAction, valuePlayer 
+}) => {
+  // ///////////////////////////////
+  // //////STYLED COMPONENTS////////
+  // ///////////////////////////////
 
-    /////////////////////////////////
-    ////////STYLED COMPONENTS////////
-    /////////////////////////////////
-
-    const Cell = styled.div`
+  const CellWrapper = styled.div`
         height: 70px;
         width: 70px;
         background: white;
@@ -17,33 +18,33 @@ const Cell = ({ indexRow, indexCol, playAction, valuePlayer }) => {
         align-items: center;
     `;
 
-    const ContentCell = styled.div`
+  const CellContent = styled.div`
         height: 55px;
         width: 55px;
         border-radius: 50%;
         background: ${
-        props => (props.colorPlayer === "playerTwo")
-           ? "#d915eb"
-            : (props.colorPlayer === "playerOne")
-                ? "#5ca9ff"
-                : "white"
+          props => ((props.colorPlayer === 'playerTwo')
+            ? '#d915eb'
+            : (props.colorPlayer === 'playerOne')
+              ? '#5ca9ff'
+              : 'white')
         };
     `;
 
-    /////////////////////////////////
-    ////////RETURN COMPONENT/////////
-    /////////////////////////////////
+  // ///////////////////////////////
+  // //////RETURN COMPONENT/////////
+  // ///////////////////////////////
 
-    return (
-        <Cell
-            key={`${indexRow}_${indexCol}`}
-            onClick={e => playAction(e.target, indexCol, indexRow)}
-        >
-            <ContentCell
-                colorPlayer={valuePlayer}
-            />
-        </Cell>
-    )
-}
+  return (
+    <CellWrapper
+      key={`${indexRow}_${indexCol}`}
+      onClick={e => playAction(e.target, indexCol, indexRow)}
+    >
+      <CellContent
+        colorPlayer={valuePlayer}
+      />
+    </CellWrapper>
+  );
+};
 
 export default Cell;

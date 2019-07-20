@@ -1,40 +1,18 @@
-export const checkIfThereAWinner = ( board ) => {
+export const checkVerticalWin = () => false;
 
-    const result = checkVerticalWin(board)
-        || checkHorizontalWin(board)
-        || checkDiagonalRightWin(board)
-        || checkDiagonalLeftWin(board)
-        
+export const checkHorizontalWin = () => false;
+
+export const checkDiagonalRightWin = () => false;
+
+export const checkDiagonalLeftWin = () => false;
+
+export const checkIsBoarIsFull = () => false;
+
+export const checkIfThereAWinner = () => {
+    const result = checkVerticalWin()
+        || checkHorizontalWin()
+        || checkDiagonalRightWin()
+        || checkDiagonalLeftWin();
+
     return result;
-
-}
-// consecutive++;
-export const checkVerticalWin = ( board ) => {
-    
-    return false;
-
-}
-
-export const checkHorizontalWin = ( board ) => {
-
-    return false;
-
-}
-
-export const checkDiagonalRightWin = ( board ) => {
-
-    return false;
-
-}
-
-export const checkDiagonalLeftWin = ( board ) => {
-
-    return false;
-
-}
-
-export const checkIsBoarIsFull = ( board ) => {
-
-    return false;
-
-}
+};

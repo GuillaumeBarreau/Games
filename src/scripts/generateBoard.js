@@ -1,16 +1,17 @@
-export const generateBoard = ( valueRow, valueCol ) => {
+const generateBoard = (valueRow, valueCol) => {
+    const board = (row, col) => {
+        const initBoard = [...Array(row)].map(() => {
+            let rows = [];
 
-  const board = (row, col) => {
-    const initBoard = [];
-    
-    for (let r = 0; r < row; r++) {
-      initBoard[r] = [];
-      for (let c = 0; c < col; c++) {
-        initBoard[r][c] = "";
-      }
+            rows = [...Array(col)].map(() => '');
+
+            return rows;
+        });
+
+        return initBoard;
     };
-    
-    return initBoard
-  }
-  return board(valueRow, valueCol)
-}
+
+    return board(valueRow, valueCol);
+};
+
+export default generateBoard;

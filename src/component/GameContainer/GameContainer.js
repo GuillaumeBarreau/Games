@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const Container = styled.div `
+const Container = styled.div`
     background: #d7dfe7ad;
     height: 150px;
     width: 250px;
@@ -15,16 +15,14 @@ const Container = styled.div `
     flex-direction: column;
 `;
 
-const GameContainer = ( { gameName, eventClick }) => {
-
-    return (
-        <Container
-            onClick = { () => eventClick(gameName) }
-        >
-            <p> { gameName } </p>
-        </Container>
-    )
-
-}
+const GameContainer = ({ gameName, eventClick }) => (
+  <Container
+    onClick={() => eventClick(gameName)}
+  >
+    <p>
+      {gameName}
+    </p>
+  </Container>
+);
 
 export default GameContainer;

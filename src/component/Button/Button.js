@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { style_playerOne, style_playerTwo, style_default } from '../../configStyledComponent/variable';
 import styled from 'styled-components';
+import { stylePlayerOne, stylePlayerTwo, styleDefault } from '../../configStyledComponent/variable';
 
-/////////////////////////////////
-////////STYLED COMPONENTS////////
-/////////////////////////////////
+// ///////////////////////////////
+// //////STYLED COMPONENTS////////
+// ///////////////////////////////
 
 const Button = styled.button`
     background: ${
-        props => (props.playerWin === "playerTwo")
-            ? style_playerTwo.color
-            : (props.playerWin === "playerOne")
-                ? style_playerOne.color
-                : style_default.color
+    props => ((props.playerWin === 'playerTwo')
+        ? stylePlayerTwo.color
+        : (props.playerWin === 'playerOne')
+            ? stylePlayerOne.color
+            : styleDefault.color)
     };
     border-radius: 24px;
     border: 0px;
@@ -25,37 +25,33 @@ const Button = styled.button`
 
     &:hover {
         background: ${
-            props => (props.playerWin === "playerTwo")
-                ? style_playerTwo.hover
-                : (props.playerWin === "playerOne")
-                    ? style_playerOne.hover
-                    : style_default.hover
+            props => ((props.playerWin === 'playerTwo')
+                ? stylePlayerTwo.hover
+                : (props.playerWin === 'playerOne')
+                    ? stylePlayerOne.hover
+                    : styleDefault.hover)
         };
         text-decoration: none;
     }
     
     &:active {
         background: ${
-            props => (props.playerWin === "playerTwo")
-                ? style_playerTwo.active
-                : (props.playerWin === "playerOne")
-                    ? style_playerOne.active
-                    : style_default.active
+            props => ((props.playerWin === 'playerTwo')
+                ? stylePlayerTwo.active
+                : (props.playerWin === 'playerOne')
+                    ? stylePlayerOne.active
+                    : styleDefault.active)
         };
     }
 `;
 
-const Btn = ({ texte, eventClick, playerWin }) => {
-
-    return (
-        <Button
-            onClick={() => eventClick(eventClick)}
-            playerWin={playerWin}
-        >
-            <p>{texte}</p>
-        </Button>
-    )
-
-}
+const Btn = ({ texte, eventClick, playerWin }) => (
+  <Button
+    onClick={() => eventClick(eventClick)}
+    playerWin={playerWin}
+  >
+    <p>{texte}</p>
+  </Button>
+);
 
 export default Btn;

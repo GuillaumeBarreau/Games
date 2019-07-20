@@ -1,47 +1,49 @@
 import React, { useState } from 'react';
 
+import styled from 'styled-components';
 import Cell from '../../Board/Cell/Cell';
 import AlertWinner from '../../Board/Alert/Winner';
 import { checkIfThereAWinner } from '../../../scripts/ticTacToe/validation';
-import Btn from '../../Button/Button'
-import { generateBoard } from '../../../scripts/generateBoard';
-import { gamesConfig } from '../../../scripts/gamesConfig';
-import styled from 'styled-components';
-import { style_playerOne, style_playerTwo } from '../../../configStyledComponent/variable';
+import Btn from '../../Button/Button';
+import generateBoard from '../../../scripts/generateBoard';
+import gamesConfig from '../../../scripts/gamesConfig';
+import { stylePlayerOne, stylePlayerTwo } from '../../../configStyledComponent/variable';
 
 const TicTacToe = () => {
-
-    const [launchGame, setLaunchGame] = useState("");
-    const [currentPlayer, setCurrentPlayer] = useState("");
-    const [playerWin, setPlayerWin] = useState("");
-    const [board, setBoard] = useState("");
-    const [countMoves, setCountMoves] = useState("");
+    const [launchGame, setLaunchGame] = useState('');
+    const [currentPlayer, setCurrentPlayer] = useState('');
+    const [playerWin, setPlayerWin] = useState('');
+    const [board, setBoard] = useState('');
+    const [countMoves, setCountMoves] = useState('');
 
     const boardIsFull = () => {
-
         const maxCountMoves = gamesConfig.TicTacToe.cols * gamesConfig.TicTacToe.rows;
         const currentCountMoves = countMoves + 1;
 
         return (maxCountMoves === currentCountMoves);
-
-    }
+    };
+    
+    const initGame = (row, col) => {
+        setCountMoves(0);
+        setBoard(generateBoard(row, col));
+        setCurrentPlayer('playerOne');
+        setLaunchGame(true);
+        setPlayerWin('');
+    };
 
     const retryGame = () => {
         initGame(gamesConfig.TicTacToe.rows, gamesConfig.TicTacToe.cols);
     };
 
-    const initGame = (row, col) => {
-
-        setCountMoves(0);
-        setBoard(generateBoard(row, col));
-        setCurrentPlayer("playerOne");
-        setLaunchGame(true);
-        setPlayerWin("");
-
-    }
+    const nextPlayer = () => {
+        setCurrentPlayer(
+            (currentPlayer === 'playerOne')
+                ? 'playerTwo'
+                : 'playerOne'
+        );
+    };
 
     const gameCore = (_, col, row) => {
-
         if (board[row][col] || playerWin) {
             return;
         }
@@ -53,7 +55,7 @@ const TicTacToe = () => {
         if (checkIfThereAWinner(board, currentPlayer)) {
             setPlayerWin(currentPlayer);
             return;
-        };
+        }
 
         if (boardIsFull()) {
             setPlayerWin('egality');
@@ -61,22 +63,11 @@ const TicTacToe = () => {
         }
 
         nextPlayer();
+    };
 
-    }
-
-    const nextPlayer = () => {
-
-        setCurrentPlayer(
-            (currentPlayer === "playerOne")
-                ? "playerTwo"
-                : "playerOne"
-        );
-
-    }
-
-    /////////////////////////////////
-    ////////STYLED COMPONENTS////////
-    /////////////////////////////////
+    // ///////////////////////////////
+    // //////STYLED COMPONENTS////////
+    // ///////////////////////////////
 
     const InitGame = styled.button`
         background: grey;
@@ -84,7 +75,8 @@ const TicTacToe = () => {
     `;
 
     const Wrapper = styled.section`
-        background-image: linear-gradient(to right bottom, #1d1c1c, #241e21, #282129, #262632, #1e2c3b);
+        background-image: 
+            linear-gradient(to right bottom, #1d1c1c, #241e21, #282129, #262632, #1e2c3b);
         min-height: 100vh;
         position: relative;
         display: flex;
@@ -102,17 +94,17 @@ const TicTacToe = () => {
         grid-template-rows: auto; 
         grid-column-gap: 8px;
         grid-row-gap: 8px;
-        ${ playerWin ? 'opacity: .4;' : null }
+        ${playerWin ? 'opacity: .4;' : null}
     `;
 
     const Strong = styled.strong`
         color: ${
-            props => (props.player === "playerTwo")
-                ? style_playerTwo.color
-                : (props.player === "playerOne")
-                    ? style_playerOne.color
-                    : "white"
-            };
+        props => ((props.player === 'playerTwo')
+            ? stylePlayerTwo.color
+            : (props.player === 'playerOne')
+                ? stylePlayerOne.color
+                : 'white')
+        };
     `;
 
     const ContentAlertWinner = styled.div`
@@ -122,64 +114,72 @@ const TicTacToe = () => {
         left: calc(50% - 57px);
     `;
 
-    /////////////////////////////////
-    ////////RETURN COMPONENT/////////
-    /////////////////////////////////
+    // ///////////////////////////////
+    // //////RETURN COMPONENT/////////
+    // ///////////////////////////////
 
     return (
-        <Wrapper>
-            {
+      <Wrapper>
+        {
                 launchGame && !playerWin
-                    ? <p><Strong player={currentPlayer} >{currentPlayer}</Strong> turn is now !</p>
+                    ? (
+                      <p>
+                        <Strong player={currentPlayer}>{currentPlayer}</Strong>
+                        {' '}
+                        turn is now !
+                      </p>
+                    )
                     : playerWin
                         ? <AlertWinner playerWin={playerWin} />
                         : null
 
             }
-            {
+        {
                 !launchGame
-                    ? <InitGame
+                    ? (
+                      <InitGame
                         onClick={initGame(gamesConfig.TicTacToe.rows, gamesConfig.TicTacToe.cols)}
-                    >
-                        Launch Game
-            </InitGame >
-                    : <Grid>
+                      >
+                            Launch Game
+                      </InitGame>
+                    )
+                    : (
+                      <Grid>
                         {
-                            board.map(
-                                (row, indexRow) =>
-                                    row.map(
-                                        (valuePlayer, indexCol) => {
-
-                                            return (
-                                                <Cell
-                                                    key={`${indexRow}--${indexCol}`}
-                                                    indexRow={indexRow}
-                                                    indexCol={indexCol}
-                                                    playAction={gameCore}
-                                                    valuePlayer={valuePlayer}
-                                                />
+                                board.map(
+                                    (row, indexRow) =>
+                                        row.map(
+                                            (valuePlayer, indexCol) => (
+                                              <Cell
+                                                key={`${indexRow}_${indexCol}`} /* eslint-disable-line react/no-array-index-key */
+                                                indexRow={indexRow}
+                                                indexCol={indexCol}
+                                                playAction={gameCore}
+                                                valuePlayer={valuePlayer}
+                                              />
                                             )
-                                        }
-                                    )
-                            )
-                        }
-                    </Grid>
+                                        )
+                                )
+                            }
+                      </Grid>
+                    )
             }
-            {
+        {
                 playerWin
-                    ?
-                    <ContentAlertWinner>
+                    ? (
+                      <ContentAlertWinner>
                         <Btn
-                            eventClick={retryGame}
-                            texte="Try Again"
-                            playerWin={playerWin}
+                          eventClick={retryGame}
+                          texte="Try Again"
+                          playerWin={playerWin}
                         />
-                    </ContentAlertWinner>
+                      </ContentAlertWinner>
+                    )
                     : null
             }
-        </Wrapper>
-        
+      </Wrapper>
+
     );
-}
+};
 
 export default TicTacToe;

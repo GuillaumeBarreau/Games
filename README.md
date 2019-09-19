@@ -4,7 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 functional Games : 
 
-Connect4
+Connect4.<br>
+
 TicTacToe (in progress)
 
 ## Available Scripts
